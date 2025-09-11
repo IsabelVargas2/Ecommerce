@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    function index(){
+    function index()
+    {
         return "LISTADO DE PRODUCTOS";
     }
 
-    function create(){
+    function create()
+    {
         return "FORMULARIO DE CREACION DE PRODUCTOS";
     }
 
@@ -19,7 +21,7 @@ class ProductController extends Controller
         if ($category == null){
             return "Detalle de cada producto: " . $id;
         } else {
-        return "Detalle de cada producto" . $id. "de la categoria: " .$category;
+            return "Detalle de cada producto" . $id. "de la categoria: " .$category;
         }
     }
 }
