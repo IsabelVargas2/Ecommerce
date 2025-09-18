@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detalle del Producto</title>
+@extends('layouts.app')
+
+
+@section('css')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -479,8 +476,10 @@
             }
         }
     </style>
-</head>
-<body>
+@endsection
+
+
+@section('content')
     <div class="container">
         <button class="back-btn" onclick="goBack()">← Volver a la lista</button>
         
@@ -622,166 +621,12 @@
             </div>
         </div>
     </div>
+@endsection
 
-    <script>
-        // Base de datos de productos
-        const products = {
-            'tostadora': {
-                title: 'Tostadora Premium Digital',
-                brand: 'KitchenPro',
-                price: '$289,900',
-                emoji: '🍞',
-                description: 'Tostadora de 4 rebanadas con controles digitales precisos, 7 niveles de tostado y funciones especiales para bagels y descongelado. Diseño elegante en acero inoxidable que combina perfectamente con cualquier cocina moderna.',
-                features: [
-                    { icon: '🔥', title: '7 Niveles de Tostado', description: 'Desde ligeramente dorado hasta crujiente' },
-                    { icon: '⚡', title: 'Controles Digitales', description: 'Pantalla LED con botones táctiles' },
-                    { icon: '🛡️', title: 'Sistema Anti-Atascos', description: 'Levantamiento automático de rebanadas' },
-                    { icon: '❄️', title: 'Función Descongelado', description: 'Perfecto para pan congelado' }
-                ],
-                specifications: [
-                    { label: 'Dimensiones', value: '35 x 25 x 22 cm' },
-                    { label: 'Peso', value: '3.2 kg' },
-                    { label: 'Potencia', value: '1400W' },
-                    { label: 'Material', value: 'Acero inoxidable' },
-                    { label: 'Capacidad', value: '4 rebanadas' },
-                    { label: 'Garantía', value: '2 años' }
-                ]
-            },
-            'lego': {
-                title: 'LEGO Botánica - Ramo de Flores',
-                brand: 'LEGO Creator',
-                price: '$189,900',
-                emoji: '🌱',
-                description: 'Set de construcción LEGO para adultos que incluye hermosas flores artificiales como rosas, lirios y gerberas. Perfecto para decoración del hogar y una experiencia de construcción relajante que te conecta con la naturaleza.',
-                features: [
-                    { icon: '🧩', title: '756 Piezas', description: 'Set completo para varias horas de diversión' },
-                    { icon: '🌸', title: 'Flores Realistas', description: 'Rosas, lirios y gerberas detalladas' },
-                    { icon: '🎨', title: 'Decorativo', description: 'Perfecto para cualquier espacio del hogar' },
-                    { icon: '🧘', title: 'Relajante', description: 'Actividad mindfulness para adultos' }
-                ],
-                specifications: [
-                    { label: 'Piezas', value: '756 elementos' },
-                    { label: 'Edad recomendada', value: '18+ años' },
-                    { label: 'Dimensiones armado', value: '38 x 25 x 15 cm' },
-                    { label: 'Material', value: 'Plástico ABS de alta calidad' },
-                    { label: 'Tiempo de construcción', value: '4-6 horas aprox.' },
-                    { label: 'Incluye', value: 'Manual de instrucciones detallado' }
-                ]
-            },
-            'owala': {
-                title: 'Termo Owala FreeSip 24oz',
-                brand: 'Owala',
-                price: '$159,900',
-                emoji: '🥤',
-                description: 'Botella de agua con doble pared de acero inoxidable que mantiene bebidas frías por 24 horas y calientes por 12 horas. Incluye pajilla integrada y tapa flip para máxima comodidad y funcionalidad.',
-                features: [
-                    { icon: '🧊', title: 'Aislamiento Superior', description: '24h frío / 12h caliente' },
-                    { icon: '🥤', title: 'Pajilla Integrada', description: 'Sistema 2 en 1: pajilla y sorbo directo' },
-                    { icon: '💧', title: 'A Prueba de Fugas', description: 'Tapa con cierre hermético' },
-                    { icon: '♻️', title: 'Sin BPA', description: 'Materiales seguros y ecológicos' }
-                ],
-                specifications: [
-                    { label: 'Capacidad', value: '24oz (710ml)' },
-                    { label: 'Material', value: 'Acero inoxidable 18/8' },
-                    { label: 'Dimensiones', value: '25 x 8 x 8 cm' },
-                    { label: 'Peso', value: '480g' },
-                    { label: 'Aislamiento', value: 'Doble pared al vacío' },
-                    { label: 'Garantía', value: '1 año contra defectos' }
-                ]
-            }
-        };
 
-        // Función para cargar producto basado en URL o localStorage
-        function loadProduct() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('product') || localStorage.getItem('currentProduct') || 'tostadora';
-            
-            if (products[productId]) {
-                displayProduct(products[productId]);
-            }
-        }
 
-        // Función para mostrar el producto
-        function displayProduct(product) {
-            document.getElementById('productTitle').textContent = product.title;
-            document.getElementById('productBrand').textContent = product.brand;
-            document.getElementById('productPrice').textContent = product.price;
-            document.getElementById('productDescription').textContent = product.description;
-            document.getElementById('mainImage').textContent = product.emoji;
-            
-            // Actualizar características
-            const featuresGrid = document.getElementById('featuresGrid');
-            featuresGrid.innerHTML = '';
-            product.features.forEach(feature => {
-                const featureDiv = document.createElement('div');
-                featureDiv.className = 'feature-item';
-                featureDiv.innerHTML = `
-                    <div class="feature-icon">${feature.icon}</div>
-                    <div class="feature-title">${feature.title}</div>
-                    <div class="feature-description">${feature.description}</div>
-                `;
-                featuresGrid.appendChild(featureDiv);
-            });
-            
-            // Actualizar especificaciones
-            const specsList = document.getElementById('specificationsList');
-            specsList.innerHTML = '';
-            product.specifications.forEach(spec => {
-                const specDiv = document.createElement('div');
-                specDiv.className = 'spec-item';
-                specDiv.innerHTML = `
-                    <span class="spec-label">${spec.label}</span>
-                    <span class="spec-value">${spec.value}</span>
-                `;
-                specsList.appendChild(specDiv);
-            });
-        }
 
-        // Funciones de navegación
-        function goBack() {
-            window.history.back();
-        }
 
-        // Funciones de cantidad
-        function increaseQuantity() {
-            const input = document.getElementById('quantity');
-            if (parseInt(input.value) < 10) {
-                input.value = parseInt(input.value) + 1;
-            }
-        }
 
-        function decreaseQuantity() {
-            const input = document.getElementById('quantity');
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
 
-        // Funciones de tabs
-        function showTab(tabName) {
-            // Ocultar todos los tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Mostrar tab seleccionado
-            document.getElementById(tabName + 'Tab').classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Funciones de acciones
-        function addToCart() {
-            const quantity = document.getElementById('quantity').value;
-            const productTitle = document.getElementById('productTitle').textContent;
-            
-            // Efecto visual
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = '✓ Agregado al Carrito';
-            btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-            
-            setTimeout(() => {
-                btn.textContent =
+  

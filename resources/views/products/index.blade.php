@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Catálogo de Productos</title>
+@extends('layouts.app')
+
+@section('css')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -330,15 +326,16 @@
             50% { opacity: 0.5; }
         }
     </style>
-</head>
-<body>
+
+@endsection
+
+@section('content')
     <div class="container">
         <div class="header">
             <h1>Catálogo de Productos</h1>
             <p>Descubre nuestra selección premium de productos</p>
         </div>
-
-        <div class="products-grid">
+    <div class="products-grid">
             <!-- Tostadora -->
             <div class="product-card">
                 <div class="product-image">🍞</div>
@@ -421,100 +418,8 @@
                 </div>
             </div>
         </div>
+@endsection
 
-        <div class="stats">
-            <div class="stat-card">
-                <span class="stat-number">3</span>
-                <div class="stat-label">Productos Disponibles</div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">⭐ 4.8</span>
-                <div class="stat-label">Calificación Promedio</div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">24h</span>
-                <div class="stat-label">Envío Express</div>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        // Agregar interactividad a los botones
-        document.querySelectorAll('.btn-primary').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
-                
-                // Efecto visual de éxito
-                this.textContent = '✓ Agregado';
-                this.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-                
-                setTimeout(() => {
-                    this.textContent = 'Agregar al Carrito';
-                    this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-                }, 2000);
-                
-                // Mostrar notificación
-                showNotification(`${productTitle} agregado al carrito`);
-            });
-        });
 
-        document.querySelectorAll('.btn-secondary').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
-                showNotification(`Mostrando detalles de ${productTitle}`);
-            });
-        });
-
-        function showNotification(message) {
-            // Crear notificación temporal
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: rgba(34, 197, 94, 0.95);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: 500;
-                z-index: 1000;
-                animation: slideInRight 0.3s ease;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // Agregar estilos CSS para las animaciones de notificación
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Efecto de parallax sutil en scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const cards = document.querySelectorAll('.product-card');
-            
-            cards.forEach((card, index) => {
-                const speed = 0.5 + (index * 0.1);
-                card.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
-            });
-        });
-    </script>
-</body>
-</html>
+    
