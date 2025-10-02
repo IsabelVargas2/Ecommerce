@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
     @extends('layout.app')
 
@@ -8,7 +7,6 @@
 
 @endsection
 
-=======
 @extends('layouts.app')
 
 @section('css')
@@ -434,4 +432,3 @@
 
 
     
->>>>>>> task
