@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.navbar, .footer {
+    background-color: #FF9900;
+    color: #FFFFFF;
+}
+.product-form {
+    padding: 50px 0;
+    background-color: #FFFFFF;
+}
+.from-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20pc;
+    border: 1pc solid #FF9900;
+    border-radius: 10PX;
+}
+.from-container h2 {
+    color: #FF9900;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.btn-primary {
+    background-color: #FFCC00;
+    border-color: #FFCC00;
+    color: #000000;
+}
+.btn-primary:hover {
+   background-color: #e6b800;
+    border-color: #e6b800;
+}
