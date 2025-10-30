@@ -51,6 +51,9 @@
                     </ul>
 
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Admin') }}</a>
+                                </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
