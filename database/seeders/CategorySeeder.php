@@ -13,18 +13,6 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $myCategory1 = new Category();
-        $myCategory1-> name = "Electronics";
-        $myCategory1->save();
-
-        $myCategory2 = new Category();
-        $myCategory2-> name = "Phones";
-        $myCategory2->save();
-        
-        $myCategory3 = new Category();
-        $myCategory3-> name = "Computers";
-        $myCategory3->save();
-
-        Category::factory(1000)->create();
+        Category::factory(20)->create();
     }
 }

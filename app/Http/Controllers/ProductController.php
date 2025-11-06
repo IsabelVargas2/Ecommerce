@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Brand;
+
 
 class ProductController extends Controller
 {
@@ -11,13 +14,27 @@ class ProductController extends Controller
         return view('products.index');
     }
 
-    function create()
+    function detail($id, $category = null)
     {
-       return view('products.create');
+        if ($category != null) {
+            return view("products.detail", [
+                'id' => $id,
+                'category' => $category
+            ]);
+        } else {
+            $category = "";
+            return view("products.detail", compact('id', 'category'));
+        }
     }
 
-    function show($id, $category = null)
+    function create()
     {
-        return view('products.show');
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('products.create',[
+            'brands' => $brands,
+            'categories' => $categories
+        ]);
     }
+
 }
