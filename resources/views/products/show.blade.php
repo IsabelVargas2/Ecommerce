@@ -12,8 +12,8 @@
         <h1 class="navbar-title">Mi Tienda</h1>
     </div>
     <nav>
-        <a href="#products">Productos</a>
-        <a href="#create">Crear Producto</a>
+        <a href="{{ url('/products') }}">Productos</a>
+        <a href="{{ url('/products/create') }}">Crear Producto</a>
         <a href="#about">Acerca de</a>
     </nav>
 </div>

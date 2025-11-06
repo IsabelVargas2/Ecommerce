@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /* $this->call([
+        $this->call([
             CategorySeeder::class,
             BrandSeeder::class,
-        ]); */
+        ]); 
         Product::factory(1000)->create();
     }
 }
