@@ -1,12 +1,3 @@
-
-    @extends('layout.app')
-
-@section('content')
-
-    <h1>LIST OF PRODUCTS</h1>
-
-@endsection
-
 @extends('layouts.app')
 
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
