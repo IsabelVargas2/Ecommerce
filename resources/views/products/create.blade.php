@@ -5,6 +5,9 @@
 
     <div class="card">
         <div class="card-body">
+
+            
+
             <form action="{{route('admin.products.store')}}" method="POST">
                 @csrf
                 <!-- Nombre del Producto -->
@@ -21,7 +24,7 @@
                     @enderror
                 <div class="input-group input-group-outline mb-3">
                     <label for="productDescription" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="productDescription" name ="description" rows="3">{{old('name')}}</textarea>
+                    <textarea class="form-control" id="productDescription" name ="description" rows="3">{{old('description')}}</textarea>
                 </div>
                 <!-- Precio (COP) -->
                 @error('price')
@@ -29,7 +32,7 @@
                     @enderror
                 <div class="input-group input-group-outline mb-3">
                     <label for="productPrice" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" step="0.01" value="{{old('name')}}">
+                    <input type="text" class="form-control" id="price" name="price" step="0.01" value="{{old('price')}}">
                 </div>
                 <!-- Categoría del Producto -->
                 @error('category')

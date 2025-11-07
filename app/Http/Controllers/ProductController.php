@@ -43,9 +43,9 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric',
-            'category' => 'required|exists:categories,id',
-            'brand' => 'required|exists:brands,id'
+            'price' => 'required|numeric|min:0|max:999999.99',
+            'category' => 'required|exists:category,id',
+            'brand' => 'required|exists:brand,id'
         ]);
 
         $product = new Product();
@@ -57,15 +57,25 @@ class ProductController extends Controller
 
         $product->save();
 
-        return "SAVE PRODUCT!!!!!!";
+        return redirect() ->route('admin.products.table');
     }
 
     public function table(){
 
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->paginate(10);
 
         return view('products.table',[
             'products' => $products
         ]);
     }
+
+    public function destroy($id){
+    $product = \App\Models\Product::findOrFail($id);
+    $product->delete();
+
+    return redirect()->route('admin.products.table')->with('success', 'Producto eliminado correctamente.');
+    }
+
+
+
 }
