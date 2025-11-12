@@ -21,4 +21,21 @@ class CategoryController extends Controller
         return "SE GUARDO BIEN";
 
     }
+
+    public function table()
+{
+    $categories = Category::orderBy('id', 'desc')->paginate(10);
+
+    return view('admin.category.table', [
+        'categories' => $categories
+    ]);
+}
+
+public function destroy($id)
+{
+    $category = Category::findOrFail($id);
+    $category->delete();
+
+    return redirect()->route('admin.category.table')->with('success', 'Categoría eliminada correctamente.');
+}
 }

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 Route::get('/', [ProductController::class, 'index']);
@@ -16,15 +19,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/category', [CategoryController::class, 'create'])->name('admin.category.create');
+    
+    // Rutas de categorías - MANTENIENDO "category" (singular)
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('/category', [CategoryController::class, 'table'])->name('admin.category.table'); // ← "category" no "categories"
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 
+    // Rutas de productos
     Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
-
     Route::get('products', [ProductController::class, 'table'])->name('admin.products.table');
+    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
-     Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-    
+     // 🏷️ Marcas
+    Route::get('/brands/create', [BrandController::class, 'create'])->name('admin.brands.create');
+    Route::post('/brands/store', [BrandController::class, 'store'])->name('admin.brands.store');
+    Route::get('/brands', [BrandController::class, 'table'])->name('admin.brands.table');
+    Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('admin.brands.destroy');
 
 });

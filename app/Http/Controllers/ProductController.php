@@ -76,6 +76,4 @@ class ProductController extends Controller
     return redirect()->route('admin.products.table')->with('success', 'Producto eliminado correctamente.');
     }
 
-
-
 }
